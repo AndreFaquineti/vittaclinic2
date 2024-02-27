@@ -1,0 +1,50 @@
+Sistema de login
+    Entradas: email; senha;
+    Sistema recebe email e senha.
+
+    Se email existe em administradores {
+        Se senha existe em admnistradores {
+            "acesso permitido"
+        } else {
+            "verifique sua senha"
+        }
+    } else {
+
+        Se email existe em medicos {
+            Se senha existe em medicos {
+                "acesso permitido"
+            } else {
+                "verifique sua senha"
+            }
+        } else {
+            
+            Se email existe em pacientes {
+                Se senha existe em pacientes {
+                    "acesso permitido"
+                }
+            } else {
+                "verifique seu email"
+            }
+        }
+    }
+Sistema de registro
+    Entradas: email; senha;
+    email e senha são guardados em $email e $senha.
+    Sistema recebe email e senha.
+
+    Se $email existe em administradores {
+        "email já está em uso"
+    } else {
+
+        Se $email existe em medicos {
+            "email já está em uso"
+        } else {
+            
+            Se $email existe em pacientes {
+                "email já está em uso"
+            } else {
+                "Registro bem sucedido."
+                Sistema adiciona $email e $senha a tabela pacientes.
+            }
+        }
+    }
