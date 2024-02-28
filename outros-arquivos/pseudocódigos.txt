@@ -1,3 +1,12 @@
+Notas: O site precisa saber qual usuario ele está lidando. $devglobalusuario = $usuario
+
+Botão de marcar consulta
+    Se tipo de usuario = paciente {
+        entra na pagina de marcação
+    } else {
+        direcionar para pagina de usuario
+    }
+
 Sistema de login
     Entradas: email; senha;
     Sistema recebe email e senha.
