@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="eng">
 <meta charset="UTF-8">
@@ -8,7 +11,7 @@
 <body>
     <a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a>
     <p>Usuário: * Tipo: *</p>
-    <p><a href="../vittaclinic2/paginas/comum/entrar.php">Entrar/Registrar</a></p>
-    <p><a href="../vittaclinic2/paginas/pacientes/marcar-consulta.php">Marcar Consulta</a></p>
+    <p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar/Registrar</a></p>
+    <p><a href="/vittaclinic2/paginas/pacientes/marcar-consulta.php">Marcar Consulta</a></p>
 </body>
 </html>
