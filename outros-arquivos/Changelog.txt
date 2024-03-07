@@ -3,3 +3,4 @@
 24/03/02 - Inicio da base de dados e formulário de login.
 24/03/03 - Sistema de login que não funciona.
 24/03/06 - Sistema de login funcional e inicio de sistema de registro.
+24/03/07 - Sistema de registro funcional. Nenhum deles tem criptografia de senha.

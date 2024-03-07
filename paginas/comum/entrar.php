@@ -20,9 +20,8 @@ if (!isset($_SESSION['email'])) {
     UNION SELECT email, senha, tipo FROM tabela_medicos WHERE email='$email' AND senha='$senha'
     UNION SELECT email, senha, tipo FROM tabela_pacientes WHERE email='$email' AND senha='$senha'");
     $stmt->execute();
-    //Trás como array associativo, onde as chaves são os nomes das colunas.
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     //Transforma o statement em um array que eu posso usar.
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($email != "") {
         if ($usuario['email'] == $email) {
             if ($usuario['senha'] == $senha) {
