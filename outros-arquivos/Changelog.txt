@@ -2,3 +2,4 @@
 24/02/28 - Adicionado pagina de marcação e pequenas correções. Pseudocódigos.
 24/03/02 - Inicio da base de dados e formulário de login.
 24/03/03 - Sistema de login que não funciona.
+24/03/06 - Sistema de login funcional e inicio de sistema de registro.
