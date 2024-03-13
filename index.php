@@ -16,6 +16,17 @@ require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
     } else {
         echo '<p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar/Registrar</a></p>';
     }
+    if (isset($_SESSION['tipodeusuario'])) {
+        if ($_SESSION['tipodeusuario'] == 'administrador') {
+            echo '<p><a href="/vittaclinic2/paginas/administradores/administrador_minhapagina.php">Minha Página</a></p>';
+        }
+        if ($_SESSION['tipodeusuario'] == 'medico') {
+            echo '<p><a href="/vittaclinic2/paginas/medicos/medico_minhapagina.php">Minha Página</a></p>';
+        }
+        if ($_SESSION['tipodeusuario'] == 'paciente') {
+            echo '<p><a href="/vittaclinic2/paginas/pacientes/paciente_minhapagina.php">Minha Página</a></p>';
+        }
+    }
     ?>
     <p><a href="/vittaclinic2/paginas/pacientes/marcar-consulta.php">Marcar Consulta</a></p>
     <p><a href="/vittaclinic2/paginas/comum/sair.php">Sair</a></p>

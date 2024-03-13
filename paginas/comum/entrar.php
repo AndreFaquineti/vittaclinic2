@@ -29,6 +29,15 @@ if (!isset($_SESSION['email'])) {
                 $_SESSION['email'] = $email;
                 $_SESSION['tipodeusuario'] = $usuario['tipo'];
                 header('location: /vittaclinic2/index.php');
+                if ($_SESSION['tipodeusuario'] == 'administrador') {
+                    header('location: /vittaclinic2/paginas/administradores/administrador_minhapagina.php');
+                }
+                if ($_SESSION['tipodeusuario'] == 'medico') {
+                    header('location: /vittaclinic2/paginas/medicos/medico_minhapagina.php');
+                }
+                if ($_SESSION['tipodeusuario'] == 'paciente') {
+                    header('location: /vittaclinic2/paginas/pacientes/paciente_minhapagina.php');
+                }
             } else {
                 echo 'Verifique sua senha.';
             }

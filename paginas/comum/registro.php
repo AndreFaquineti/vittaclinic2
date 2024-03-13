@@ -28,7 +28,7 @@ if(!isset($_SESSION['email'])) {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['tipodeusuario'] = $usuario['tipo'];
-            header('location: /vittaclinic2/index.php');
+            header('location: \vittaclinic2\paginas\pacientes\paciente_minhapagina.php');
         }
     }
 }
@@ -49,7 +49,6 @@ if(!isset($_SESSION['email'])) {
     }
     ?>
     <p><h2>Registro</h2></p>
-    <p>Nessa página o paciente deve poder se registrar.</p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         Email: <input type="email" name="email"> <br>
         Senha: <input type="password" name="senha"> <br>

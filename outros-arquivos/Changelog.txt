@@ -4,3 +4,4 @@
 24/03/03 - Sistema de login que não funciona.
 24/03/06 - Sistema de login funcional e inicio de sistema de registro.
 24/03/07 - Sistema de registro funcional. Nenhum deles tem criptografia de senha.
+24/03/13 - Pagina de marcar consultas filtra pacientes. Caminhos para minha página de cada usuário. Minha página de administrador inicial. Formulário para cadastro de administradores e médicos sem sistema.
