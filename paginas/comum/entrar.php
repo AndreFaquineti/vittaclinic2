@@ -16,14 +16,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 if (!isset($_SESSION['email'])) {
     //Preparo da declaração.
-    $stmt = $conn->prepare("SELECT email, senha, tipo FROM tabela_administradores WHERE email='$email' AND senha='$senha'
-    UNION SELECT email, senha, tipo FROM tabela_medicos WHERE email='$email' AND senha='$senha'
-    UNION SELECT email, senha, tipo FROM tabela_pacientes WHERE email='$email' AND senha='$senha'");
+    $stmt = $conn->prepare("SELECT email, senha, tipo FROM tabela_usuarios WHERE email='$email' AND senha='$senha'");
     $stmt->execute();
     //Transforma o statement em um array que eu posso usar.
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($email != "") {
-        if ($usuario['email'] == $email) {
+        if (@$usuario['email'] == $email) {
             if ($usuario['senha'] == $senha) {
                 echo 'login bem sucedido! <br>';
                 $_SESSION['email'] = $email;
@@ -38,11 +36,9 @@ if (!isset($_SESSION['email'])) {
                 if ($_SESSION['tipodeusuario'] == 'paciente') {
                     header('location: /vittaclinic2/paginas/pacientes/paciente_minhapagina.php');
                 }
-            } else {
-                echo 'Verifique sua senha.';
             }
         } else {
-            echo 'Verifique seu email.';
+            echo 'Verifique seu email e/ou senha.';
         }
     }
 }

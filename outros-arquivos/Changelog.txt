@@ -5,3 +5,4 @@
 24/03/06 - Sistema de login funcional e inicio de sistema de registro.
 24/03/07 - Sistema de registro funcional. Nenhum deles tem criptografia de senha.
 24/03/13 - Pagina de marcar consultas filtra pacientes. Caminhos para minha página de cada usuário. Minha página de administrador inicial. Formulário para cadastro de administradores e médicos sem sistema.
+24/03/14 - Sistema de registrar médicos e administradores. Mudanças no banco de dados. Erros corrigidos ou suprimidos. Senhas requiridas em cadastros. Medidas de segurança de acesso em todas as paginas que necessitam no momento.
