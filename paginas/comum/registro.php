@@ -1,26 +1,28 @@
 <?php
 session_start();
 require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
+require 'C:\xampp\htdocs\vittaclinic2\sistema\lib.php';
+if (isset($_SESSION['tipodeusuario'])) {
+    if ($_SESSION['tipodeusuario'] != '') {
+        header('location: /vittaclinic2/index.php');
+    }
+}
 ?>
 <!doctype html>
 <html lang="eng">
 <meta charset="UTF-8">
 <head>
     <title>Registro</title>
+    <?php
+    seletorDeTemas();
+    ?>
 </head>
 <body>
     <p><a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a></p>
-    <?php //Sistema que escreve o usuario.
-    if (isset($_SESSION['email'])) {
-        echo 'usuario: ' . $_SESSION['email'] . ' tipo: ' . $_SESSION['tipodeusuario'];
-    } else {
-        echo '<p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar/Registrar</a></p>';
-    }
-    ?>
     <p><h2>Registro</h2></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Email: <input type="email" name="email"> <br>
-        Senha: <input type="password" name="senha"> <br>
+        Email: <input type="email" name="email" required> <br>
+        Senha: <input type="password" name="senha" required> <br>
         <input type="submit">
     </form>
     <?php
@@ -60,6 +62,5 @@ require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
     }
     ?>
     <p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar</a></p>
-    <p><a href="/vittaclinic2/paginas/comum/sair.php">Sair</a></p>
 </body>
 </html>

@@ -1,13 +1,22 @@
 <?php
 session_start();
-//Redirecionador de acesso não autorizado
-if (isset($_SESSION['tipodeusuario'])) {
-    if ($_SESSION['tipodeusuario'] != 'paciente') {
-        header('location: /vittaclinic2/index.php');
-    }
-} else {
-    header('location: /vittaclinic2/paginas/comum/entrar.php');
-}
+require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
+require 'C:\xampp\htdocs\vittaclinic2\sistema\lib.php';
+filtroAcessoPaciente();
 ?>
-<a href="/vittaclinic2/index.php">Vittaclinic</a>
-<p>Paciente minha página.</p>
+<!DOCTYPE html>
+<html lang="eng">
+<meta charset="UTF-8">
+<head>
+    <title>Marque sua consulta</title>
+    <?php
+    seletorDeTemas();
+    ?>  
+</head>
+<body>
+    <p><a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a></p>
+    <?php
+    escreverUsuarioEmailTipo();
+    ?>
+    <p>Paciente minha página.</p>
+</body>
