@@ -20,5 +20,14 @@ require 'C:\xampp\htdocs\vittaclinic2\sistema\lib.php';
     minhaPaginaTipoUsuario();
     ?>
     <p><a href="/vittaclinic2/paginas/comum/marcar-consulta.php">Marcar Consulta</a></p>
+<?php
+$stmt = $conn->prepare("SELECT * FROM tabela_usuarios");
+$stmt->execute();
+$lista_emails = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+foreach ($lista_emails as $emails) {
+    echo $emails['tipo'] . ' ' . '----' . ' ' . $emails['email'] . '<br>';
+}
+?>
 </body>
 </html>

@@ -1,62 +1,20 @@
-Notas: O site precisa saber qual usuario ele está lidando. $devglobalusuario = $usuario
+Notas:
 
-Botão de marcar consulta
-    Se tipo de usuario = paciente {
-        entra na pagina de marcação
-    } else {
-        direcionar para pagina de usuario
-    }
+Registrar médicos
+Notas: Devem receber uma tabela já no registro.
 
-Sistema de login
-    Entradas: email; senha;
-    Sistema recebe email e senha.
+Criar tabelas para medicos
 
-    Se email existe em administradores {
-        Se senha existe em admnistradores {
-            "acesso permitido"
-            $devglobalusuario = "administrador"
-        } else {
-            "verifique sua senha"
-        }
-    } else {
+    pegar todos os emails onde tipo == medico
 
-        Se email existe em medicos {
-            Se senha existe em medicos {
-                "acesso permitido"
-                $devglobalusuario = "medico"
-            } else {
-                "verifique sua senha"
-            }
-        } else {
-            
-            Se email existe em pacientes {
-                Se senha existe em pacientes {
-                    "acesso permitido"
-                    $devglobalusuario = "paciente"
-                }
-            } else {
-                "verifique seu email"
-            }
-        }
-    }
-Sistema de registro
-    Entradas: email; senha;
-    email e senha são guardados em $email e $senha.
-    Sistema recebe email e senha.
+    para cada email criar uma tabela onde linha medico recebe $email_medico
 
-    Se $email existe em administradores {
-        "email já está em uso"
-    } else {
+Formulário de selecionar horario.
+Notas : preciso que ele crie até 30 dias da data atual e todos os horarios de 30 em 30 minutos
+entre as 10:00 e as 18:00. Com exceção dos horarios que já estão no banco de dados e adicione ao
+banco de dados o dia horario selecionado. Então seria tipo:
 
-        Se $email existe em medicos {
-            "email já está em uso"
-        } else {
-            
-            Se $email existe em pacientes {
-                "email já está em uso"
-            } else {
-                "Registro bem sucedido."
-                Sistema adiciona $email e $senha a tabela pacientes.
-            }
-        }
-    }
+    Busca os médicos. Força a selecionar um médico primeiro. Busca os dias e horarios a partir de hoje que estão no banco.
+    Escreve um preset que exclui os horarios que foram encontrados. Não exibe dias que estejam lotados. Força a escolher o
+    dia primeiro. Busca os horarios. Escreve o preset dos horarios tirando os que estão no banco. E envia a tabela do medico
+    o email do paciente, o dia, e a hora da consulta.
