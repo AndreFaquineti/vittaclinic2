@@ -48,6 +48,13 @@ filtroAcessoAdmin();
             if ($senha_medico != '') {
                 $stmt = $conn->prepare("INSERT INTO tabela_usuarios (email, senha, tipo) VALUES ('$email_medico', '$senha_medico', 'medico')");
                 $stmt->execute();
+                $stmt = $conn->prepare("CREATE TABLE IF NOT EXISTS `tabela_horarios_$email_medico`
+                                        (horario datetime NOT NULL UNIQUE,
+                                        email_paciente varchar(255) NOT NULL,
+                                        FOREIGN KEY (email_paciente) REFERENCES tabela_usuarios(email),
+                                        PRIMARY KEY (horario)
+                                        );");
+                $stmt->execute();
                 echo 'Médico cadastrado com sucesso.';
             } else {
                 echo 'Digite uma senha';

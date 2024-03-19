@@ -9,3 +9,4 @@
 24/03/15 - Mudanças no banco de dados e tentativa de deixar mais utilizavel realmente. Pode ser que o melhor seja abandonar essa idéia e manter apenas com email e senha por hora.
 24/03/16 - Reversões no banco de dados. Uso de funções para facilitar o desenvolvimento. Modo escuro (lembrete de não mexer com css até estar tudo pronto). Alterações e pequenas correções. Todas as paginas atuais usam funções em códigos compartilhados.
 24/03/18 - Planejamento do sistema de marcar consultas.
+24/03/19 - Médicos agora recebem tabelas no cadastro.

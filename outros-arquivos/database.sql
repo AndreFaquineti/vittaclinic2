@@ -15,6 +15,14 @@ VALUES ('medico@vt.com', '123', 'medico');
 INSERT INTO tabela_usuarios (email, senha, tipo)
 VALUES ('paciente@vt.com', '123', 'paciente');
 
+/*Tabela de cada médico*/
+CREATE TABLE `tabela_horarios$email_medico` (
+    horario datetime NOT NULL UNIQUE,
+    email_paciente varchar(255) NOT NULL,
+    FOREIGN KEY (email_paciente) REFERENCES tabela_usuarios(email),
+    PRIMARY KEY (horario)
+);
+
 /*Comandos uteis*/
 SELECT * FROM tabela_usuarios;
 SELECT * FROM tabela_usuarios WHERE tipo='administrador';
