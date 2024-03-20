@@ -10,3 +10,4 @@
 24/03/16 - Reversões no banco de dados. Uso de funções para facilitar o desenvolvimento. Modo escuro (lembrete de não mexer com css até estar tudo pronto). Alterações e pequenas correções. Todas as paginas atuais usam funções em códigos compartilhados.
 24/03/18 - Planejamento do sistema de marcar consultas.
 24/03/19 - Médicos agora recebem tabelas no cadastro.
+24/03/20 - É possivel selecionar médicos na pagina de marcar consultas.

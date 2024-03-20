@@ -24,5 +24,40 @@ if (!isset($_SESSION['tipodeusuario'])) {
     <p><h1>Marque sua consulta</h1></p>
     <p>Aqui o usuario deve poder marcar consultas</p>
     <p>Um médico não deve poder marcar consultas com si mesmo</p>
+    <form method="post">
+        <label> Escolha o médico da sua consulta:
+            <select name="email_medico">
+            <option value="nao_selecionado"> Lista de médicos </option>
+            <?php
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $email_medico = $_POST['email_medico'];
+                }
+                if ($email_medico != 'nao_selecionado') {
+                    echo '<option value="' . $email_medico . '"selected>' . $email_medico . '</option>';
+                }
+                $stmt = $conn->prepare("SELECT email FROM tabela_usuarios WHERE tipo='medico'");
+                $stmt -> execute();
+                $lista_medicos = $stmt->fetchall(PDO::FETCH_ASSOC);
+                foreach ($lista_medicos as $medicos) {
+                    echo '<option value="' . $medicos['email'] . '">' . $medicos['email'] . '</option>';
+                }
+            ?>
+            </select>
+        </label>
+        <input type="submit">
+    </form>
+    <?php
+    if (!isset($email_medico)) {
+        $email_medico = '';
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email_medico = $_POST['email_medico'];
+    }
+    if ($email_medico != 'nao_selecionado') {
+        echo $email_medico;
+    } else {
+        echo 'Selecione um médico.';
+    }
+    ?>
 </body>
 </html>
