@@ -35,7 +35,7 @@ if (!isset($_SESSION['tipodeusuario'])) {
                 if ($email_medico != 'nao_selecionado') {
                     echo '<option value="' . $email_medico . '"selected>' . $email_medico . '</option>';
                 }
-                $stmt = $conn->prepare("SELECT email FROM tabela_usuarios WHERE tipo='medico'");
+                $stmt = $conn->prepare("SELECT email FROM tabela_usuarios WHERE tipo='medico' AND email!='$email_medico'");
                 $stmt -> execute();
                 $lista_medicos = $stmt->fetchall(PDO::FETCH_ASSOC);
                 foreach ($lista_medicos as $medicos) {
@@ -47,6 +47,7 @@ if (!isset($_SESSION['tipodeusuario'])) {
         <input type="submit">
     </form>
     <?php
+    //Seletor de médico
     if (!isset($email_medico)) {
         $email_medico = '';
     }
@@ -54,10 +55,22 @@ if (!isset($_SESSION['tipodeusuario'])) {
         $email_medico = $_POST['email_medico'];
     }
     if ($email_medico != 'nao_selecionado') {
-        echo $email_medico;
+        echo $email_medico . '<br>';
     } else {
         echo 'Selecione um médico.';
     }
     ?>
+    <form>
+        <select name="data">
+        <option value="nao_selecionado"> Data </option>
+        </select> <br>
+        <?php
+        $hoje = getdate();
+        $hoje_dia = $hoje['mday'];
+        $hoje_mes = $hoje['mon'];
+        $hoje_ano = $hoje['year'];
+        echo 'dia: ' . $hoje_dia . '<br>mês: ' . $hoje_mes . '<br>ano: ' . $hoje_ano;
+        ?>
+    </form>
 </body>
 </html>

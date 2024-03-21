@@ -11,3 +11,4 @@
 24/03/18 - Planejamento do sistema de marcar consultas.
 24/03/19 - Médicos agora recebem tabelas no cadastro.
 24/03/20 - É possivel selecionar médicos na pagina de marcar consultas.
+24/03/21 - Pequenas correções. Inicio do sistema de escolher data.
