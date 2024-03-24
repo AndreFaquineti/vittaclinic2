@@ -60,17 +60,23 @@ if (!isset($_SESSION['tipodeusuario'])) {
         echo 'Selecione um médico.';
     }
     ?>
-    <form>
-        <select name="data">
-        <option value="nao_selecionado"> Data </option>
-        </select> <br>
+    <form method="post">
+        <label>Escolha um dia:</label>
         <?php
         $hoje = getdate();
-        $hoje_dia = $hoje['mday'];
-        $hoje_mes = $hoje['mon'];
-        $hoje_ano = $hoje['year'];
-        echo 'dia: ' . $hoje_dia . '<br>mês: ' . $hoje_mes . '<br>ano: ' . $hoje_ano;
+        $hoje_ano = strval($hoje['year']);
+        $hoje_mes = strval($hoje['mon']);
+        $hoje_dia = strval($hoje['mday']);
+        if ($hoje_mes != 10 OR 11 OR 12) {
+            $hoje_mes = '0'.$hoje_mes;
+        }
+        $hoje_data = $hoje_ano . '-' . $hoje_mes . '-' . $hoje_dia;
+        echo '<input type="date" id="date" name="data" min="' . $hoje_data . '">';
         ?>
+        <input type="submit">
+        </label>
+    </form>
+    <form method="post">
     </form>
 </body>
 </html>
