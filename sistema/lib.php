@@ -69,7 +69,7 @@ function dataHoje() {
     $hoje_ano = strval($hoje['year']);
     $hoje_mes = strval($hoje['mon']);
     $hoje_dia = strval($hoje['mday']);
-    if ($hoje_mes != 10 OR 11 OR 12) {
+    if ($hoje_mes != 10 && $hoje_mes != 11 && $hoje_mes != 12) {
         $hoje_mes = '0'.$hoje_mes;
     }
     $hoje_data = $hoje_ano . '-' . $hoje_mes . '-' . $hoje_dia;
