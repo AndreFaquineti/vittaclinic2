@@ -15,3 +15,4 @@
 24/03/24 - Tem o sistema de escolher a data mas ele ainda precisa guardar a data para poder escolher o horario.
 24/03/25 - É possivel escolher datas e associa-las a médicos. Muitas correções pequenas.
 24/04/10 - Quase possivel marcar consultas apesar de estar contraintuitivo.
+24/05/19 - Pequenas alterações. Planejamento. Seletor de datas funcional. Seletor de horarios mal feito.

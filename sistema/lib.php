@@ -5,7 +5,9 @@ function escreverUsuarioEmailTipo() {
         echo 'usuario: ' . $_SESSION['email'] . ' tipo: ' . $_SESSION['tipodeusuario'];
         echo ' <a href="/vittaclinic2/paginas/comum/sair.php">Sair</a>';
     } else {
-        echo '<p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar/Registrar</a></p>';
+        echo '
+        <p><a href="/vittaclinic2/paginas/comum/entrar.php">Entrar</a>&nbsp&nbsp
+        <a href="/vittaclinic2/paginas/comum/registro.php">Registrar</a></p>';
     }
 }
 //Gerar o link que direciona para a pagina de cada tipo de usuario
@@ -63,6 +65,12 @@ function filtroAcessoPaciente() {
         header('location: /vittaclinic2/index.php');
     }
 }
+//Redirecionador de não usuario
+function filtroAcessoLogin() {
+    if (!isset($_SESSION['tipodeusuario'])) {
+    header('location: /vittaclinic2/paginas/comum/entrar.php');
+}}
+
 //Pegar a data de hoje no formatO YYYY-MM-DD
 function dataHoje() {
     $hoje = getdate();

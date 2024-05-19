@@ -2,10 +2,7 @@
 session_start();
 require 'C:\xampp\htdocs\vittaclinic2\sistema\conexao.php';
 require 'C:\xampp\htdocs\vittaclinic2\sistema\lib.php';
-//Redirecionador de não usuario
-if (!isset($_SESSION['tipodeusuario'])) {
-    header('location: /vittaclinic2/paginas/comum/entrar.php');
-}
+filtroAcessoPaciente();
 ?>
 <!DOCTYPE html>
 <html lang="eng">
@@ -23,7 +20,6 @@ escreverUsuarioEmailTipo();
 ?>
 <p><h1>Marque sua consulta</h1></p>
 <p>Aqui o usuario deve poder marcar consultas</p>
-<p>Um médico não deve poder marcar consultas com si mesmo</p>
 <!--Formulário para marcar uma consulta-->
 <form method="post" action="">
     <!--Formulário para escolher médicos-->
@@ -63,29 +59,40 @@ escreverUsuarioEmailTipo();
         }
         //Concatena a data de hoje no formato YYYY-MM-DD
         $hoje_data = $hoje_ano . '-' . $hoje_mes . '-' . $hoje_dia;
-        //Gera o calendario de escolha html
-        if (empty($email_medico)) {
-            echo '<input type="date" id="date" name="data_escolhida" min="' . $hoje_data . '" value="' . $data_escolhida . '"" disabled>';
-        }
-        if (!empty($email_medico)) {
-            echo '<input type="date" id="date" name="data_escolhida" min="' . $hoje_data . '" value="' . $data_escolhida . '"">';
-        }
-        ?>
-        </label> <br>
-        <?php
         //Pega a data escolhida e manda pra mim usar
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['data_escolhida'])) {
                 $data_escolhida = $_POST['data_escolhida'];
             }
         }
-        if (!isset($data_escolhida)) {
-            $data_escolhida = '';
+        //Gera o calendario de escolha html
+        if (empty($email_medico)) {
+            echo '<input type="date" id="date" name="data_escolhida" min="' . $hoje_data . '" value="' . $data_escolhida . '"" disabled>';
         }
-        if ($data_escolhida == '') {
-            echo 'Escolha uma data';
+        if (!empty($email_medico) && empty($data_escolhida)) {
+            echo '<input type="date" id="date" name="data_escolhida" min="' . $hoje_data . '" value="' . $data_escolhida . '"">';
+        }
+        if($data_escolhida != '') {
+            echo '<input type="date" id="date" name="data_escolhida" min="' . $hoje_data . '" value="' . $data_escolhida . '"">';
         }
         ?>
+    </label> <br>
+    <label> Escolha um horario:
+        <select name="hora_escolhida" <?php if(empty($data_escolhida)) {echo 'disabled';} ?>>
+            <!--Opção Vazia-->
+            <option value="09:00">09:00</option>
+            <option value="09:20">09:20</option>
+            <option value="09:40">09:40</option>
+            <?php
+            $opcao_hora = 10;
+            for ($opcao_hora = 10; $opcao_hora <= 17; $opcao_hora++) {
+                echo '<option value="' . $opcao_hora . ':00"> ' . $opcao_hora . ':00</option>';
+                echo '<option value="' . $opcao_hora . ':20"> ' . $opcao_hora . ':20</option>';
+                echo '<option value="' . $opcao_hora . ':40"> ' . $opcao_hora . ':40</option>';
+            }
+            ?>
+        </select>
+    </label> <br>
     <label> Marcar Consulta:
         <input type="submit">
     </label> <br>
@@ -109,8 +116,12 @@ escreverUsuarioEmailTipo();
     }
     ?>
 <?php
-echo $email_medico . '<br>';
-echo $data_escolhida;
+if(isset($email_medico)){
+    echo $email_medico . '<br>';
+}
+if(isset($email_medico)){
+    echo $data_escolhida;
+}
 ?>
 
 </body>
