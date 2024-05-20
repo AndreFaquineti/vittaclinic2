@@ -79,50 +79,47 @@ escreverUsuarioEmailTipo();
     </label> <br>
     <label> Escolha um horario:
         <select name="hora_escolhida" <?php if(empty($data_escolhida)) {echo 'disabled';} ?>>
-            <!--Opção Vazia-->
-            <option value="09:00">09:00</option>
-            <option value="09:20">09:20</option>
-            <option value="09:40">09:40</option>
+            <option value=""><?php if (!isset($hora_escolhida)) {echo 'Escolha um Horario';}?></option>
             <?php
-            $opcao_hora = 10;
-            for ($opcao_hora = 10; $opcao_hora <= 17; $opcao_hora++) {
-                echo '<option value="' . $opcao_hora . ':00"> ' . $opcao_hora . ':00</option>';
-                echo '<option value="' . $opcao_hora . ':20"> ' . $opcao_hora . ':20</option>';
-                echo '<option value="' . $opcao_hora . ':40"> ' . $opcao_hora . ':40</option>';
+            if (!empty($data_escolhida)) {
+                $stmt = $conn->prepare("SELECT TIME(horario) as horario FROM `tabela_horarios_$email_medico` WHERE DATE(horario)='$data_escolhida'");
+                $stmt -> execute();
+                $array_medico_horarios = $stmt->fetchALL(PDO::FETCH_COLUMN);
+
+                $stmt = $conn->prepare("SELECT TIME(horario) as horario FROM `tabela_horarios_padrao`");
+                $stmt -> execute();
+                $array_horarios_padrao = $stmt->fetchALL(PDO::FETCH_COLUMN);
+
+                $array_horarios_disponiveis = array_diff($array_horarios_padrao, $array_medico_horarios);
+
+                foreach($array_horarios_disponiveis as $horarios_disponiveis) {
+                    echo '<option value="' . $horarios_disponiveis . '">' . $horarios_disponiveis . '</option>';
+                }
+            }
+            //Mantém selecionado a opção escolhida.
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $hora_escolhida = $_POST['hora_escolhida'];
+            }
+            if ($hora_escolhida != '') {
+                echo '<option value="' . $hora_escolhida . '"selected>' . $hora_escolhida . '</option>';
             }
             ?>
         </select>
     </label> <br>
     <label> Marcar Consulta:
-        <input type="submit">
+        <input type="submit"> <br>
+        <?php
+        //Enviar para base de dados o email do paciente e o datetime
+        if(!empty($email_medico) && !empty($data_escolhida) && !empty($hora_escolhida)) {
+            //Concatenar data e hora e pegar email do paciente
+            $datahora = $data_escolhida . ' ' . $hora_escolhida;
+            $email_paciente = $_SESSION['email'];
+            $stmt = $conn->prepare("INSERT INTO `tabela_horarios_$email_medico` (horario, email_paciente) VALUES ('$datahora', '$email_paciente')");
+            $stmt -> execute();
+            echo 'Agendamento bem sucedido!' . '<br>' . 'Médico: ' . $email_medico . 'Dia: ' . $data_escolhida . 'Horário: ' . $hora_escolhida . '<br>';
+        }
+        ?>
     </label> <br>
-    <?php
-    if (empty($email_medico)) {
-        echo 'Escolha um médico. <br>';
-    }
-    if(empty($data_escolhida)) {
-        echo 'Escolha uma data. <br>';
-    }
-    ?>
 </form>
-<?php
-    if (isset($email_medico) && $email_medico !='' && isset($data_escolhida) && $data_escolhida !='') {
-        $stmt = $conn->prepare("SELECT * FROM `tabela_horarios_$email_medico` WHERE DATE(horario)='$data_escolhida'");
-        $stmt -> execute();
-        $array_medico_horarios = $stmt->fetchALL(PDO::FETCH_ASSOC);
-        foreach ($array_medico_horarios as $medico_horarios) {
-        echo 'Horario:' . $medico_horarios['horario'] . ' Paciente:' . $medico_horarios['email_paciente'] . '<br>';
-    }
-    }
-    ?>
-<?php
-if(isset($email_medico)){
-    echo $email_medico . '<br>';
-}
-if(isset($email_medico)){
-    echo $data_escolhida;
-}
-?>
-
 </body>
 </html>

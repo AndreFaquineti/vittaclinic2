@@ -16,3 +16,4 @@
 24/03/25 - É possivel escolher datas e associa-las a médicos. Muitas correções pequenas.
 24/04/10 - Quase possivel marcar consultas apesar de estar contraintuitivo.
 24/05/19 - Pequenas alterações. Planejamento. Seletor de datas funcional. Seletor de horarios mal feito.
+24/05/20 - Sistema de marcar consultas concluido (apesar de sensivel a burrice). Organização menor de código.
