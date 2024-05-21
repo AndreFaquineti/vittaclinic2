@@ -14,12 +14,9 @@ require 'C:\xampp\htdocs\vittaclinic2\sistema\lib.php';
     ?>
 </head>
 <body>
-    <a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a>
-    <?php
-    escreverUsuarioEmailTipo();
-    minhaPaginaTipoUsuario();
-    ?>
-    <p><a href="/vittaclinic2/paginas/comum/marcar-consulta.php">Marcar Consulta</a></p>
+<?php
+include 'C:\xampp\htdocs\vittaclinic2\paginas/comum\header1.php';
+?>
 <?php
 $stmt = $conn->prepare("SELECT * FROM tabela_usuarios");
 $stmt->execute();

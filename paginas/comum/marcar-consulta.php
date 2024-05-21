@@ -14,9 +14,8 @@ filtroAcessoPaciente();
     ?>  
 </head>
 <body>
-<p><a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a></p>
 <?php
-escreverUsuarioEmailTipo();
+include 'C:\xampp\htdocs\vittaclinic2\paginas/comum\header1.php';
 ?>
 <p><h1>Marque sua consulta</h1></p>
 <p>Aqui o usuario deve poder marcar consultas</p>
@@ -115,6 +114,8 @@ escreverUsuarioEmailTipo();
             $datahora = $data_escolhida . ' ' . $hora_escolhida;
             $email_paciente = $_SESSION['email'];
             $stmt = $conn->prepare("INSERT INTO `tabela_horarios_$email_medico` (horario, email_paciente) VALUES ('$datahora', '$email_paciente')");
+            $stmt -> execute();
+            $stmt = $conn->prepare("INSERT INTO `tabela_registros` (horario, email_paciente, email_medico) VALUES ('$datahora', '$email_paciente', '$email_medico')");
             $stmt -> execute();
             echo 'Agendamento bem sucedido!' . '<br>' . 'Médico: ' . $email_medico . 'Dia: ' . $data_escolhida . 'Horário: ' . $hora_escolhida . '<br>';
         }

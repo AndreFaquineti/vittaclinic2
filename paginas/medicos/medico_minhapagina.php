@@ -14,10 +14,9 @@ filtroAcessoMedico();
     ?>  
 </head>
 <body>
-    <p><a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a></p>
-    <?php
-    escreverUsuarioEmailTipo();
-    ?>
-    <p>Médico minha página.</p>
+<?php
+include 'C:\xampp\htdocs\vittaclinic2\paginas/comum\header_mp_especial.php';
+?>
+<p>Médico minha página.</p>
 </body>
 </html>

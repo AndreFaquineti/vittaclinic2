@@ -14,11 +14,10 @@ filtroAcessoAdmin();
     ?>
 </head>
 <body>
-    <a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a>
-    <p><h2>Administrador minha página.</h2></p>
-    <?php
-    escreverUsuarioEmailTipo();
-    ?>
+<?php
+include 'C:\xampp\htdocs\vittaclinic2\paginas/comum\header_mp_especial.php';
+?>
+<p><h2>Administrador minha página.</h2></p>
     <p>
     <h3>Cadastrar médicos</h3>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

@@ -55,6 +55,16 @@ INSERT INTO `tabela_horarios_padrao` (horario) VALUES
     ('2000-01-01 17:20:00'),
     ('2000-01-01 17:40:00');
 
+/*Tabela de consultas global*/
+CREATE TABLE tabela_registros (
+    horario DATETIME NOT NULL UNIQUE,
+    email_paciente varchar(255) NOT NULL,
+    email_medico varchar(255) NOT NULL,
+    FOREIGN KEY (email_paciente) REFERENCES tabela_usuarios(email),
+    FOREIGN KEY (email_medico) REFERENCES tabela_usuarios(email),
+    PRIMARY KEY (horario)
+);
+
 /*Comandos uteis*/
 SELECT * FROM tabela_usuarios;
 SELECT * FROM tabela_usuarios WHERE tipo='administrador';

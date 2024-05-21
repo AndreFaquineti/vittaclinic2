@@ -59,8 +59,10 @@ if (!isset($_SESSION['email'])) {
     ?>
 </head>
 <body>
-    <p><a href="/vittaclinic2/index.php"><h1>Vitta.Clinic</h1></a></p>
-    <p><h2>Entrar</h2></p>
+<?php
+include 'C:\xampp\htdocs\vittaclinic2\paginas/comum\header1.php';
+?>
+<p><h2>Entrar</h2></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         Email: <input type="email" name="email"> <br>
         Senha: <input type="password" name="senha"> <br>
